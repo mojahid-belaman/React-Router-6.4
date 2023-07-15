@@ -1,21 +1,23 @@
+import { Form, useActionData } from 'react-router-dom';
 import classes from './NewPostForm.module.css';
 
-function NewPostForm({ onCancel, onSubmit, submitting }) {
+function NewPostForm({ onCancel, submitting }) {
+  const data = useActionData();
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    <Form className={classes.form} method='post' action='/blog/new'>
       <fieldset>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" required minLength={5} />
+        <input id="title" type="text" name="title" />
+        {data && data.status && <p style={{color: 'red', textAlign: 'left'}}>Incorrect Field!</p>}
       </fieldset>
       <fieldset>
         <label htmlFor="text">Post Text</label>
         <textarea
           id="text"
           name="post-text"
-          required
-          minLength={10}
           rows={5}
-        ></textarea>
+          ></textarea>
+          {data && data.status && <p style={{color: 'red', textAlign: 'left'}}>Incorrect Field!</p>}
       </fieldset>
       <button type="button" onClick={onCancel} disabled={submitting}>
         Cancel
@@ -23,7 +25,7 @@ function NewPostForm({ onCancel, onSubmit, submitting }) {
       <button disabled={submitting}>
         {submitting ? 'Submitting...' : 'Create Post'}
       </button>
-    </form>
+    </Form>
   );
 }
 
