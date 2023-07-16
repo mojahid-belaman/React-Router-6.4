@@ -12,6 +12,9 @@ import PostDetailPage, { loader as blogPostLoader } from "./pages/PostDetail";
 import RootLayout from "./pages/RootLayout";
 import WelcomePage from "./pages/Welcome";
 import ErrorPage from "./pages/Error";
+import DeferredBlogPostsPage, {
+  loader as deferBlogLoader,
+} from "./pages/DeferredBlogPosts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +32,11 @@ const router = createBrowserRouter(
         path="/blog/new"
         element={<NewPostPage />}
         action={newPostAction}
+      />
+      <Route
+        path="defer"
+        element={<DeferredBlogPostsPage />}
+        loader={deferBlogLoader}
       />
     </Route>
   )
