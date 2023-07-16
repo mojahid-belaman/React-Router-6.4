@@ -29,6 +29,17 @@ function MainNavigation() {
               Blog
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/defer"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              Defer-Post
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
